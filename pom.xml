@@ -1,0 +1,212 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.smartwf.parent</groupId>
+  <artifactId>smartwf</artifactId>
+  <version>1.0.2.RELEASE</version>
+  <packaging>pom</packaging>
+  <name>smartwf</name>
+  <description>智慧风电场</description>
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.7.0</version>
+  </parent>
+  <modules>
+    	<module>smartwf-common</module>
+    	<module>smartwf-system-man</module>
+    	<module>smartwf-security</module>
+    	<module>smartwf-web</module>
+    	<module>smartwf-sso</module>
+    	<module>smartwf-oauth2-resource-a</module>
+    	<module>smartwf-oauth2-resource-b</module>
+    	<module>smartwf-oauth2-server</module>
+    	<module>smartwf-oauth2-client</module>
+  </modules>
+  
+  <!-- 私服上传
+  <distributionManagement>
+		<repository>
+			<id>maven-releases</id>
+			<url>http://repo.windmagics.com/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>maven-snapshots</id>
+			<url>http://repo.windmagics.com/repository/maven-snapshots/</url>
+		</snapshotRepository>
+  </distributionManagement>
+   -->
+  <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>11</java.version>
+        <hutool.version>5.8.0</hutool.version>
+        <mysql.connector.java>8.0.15</mysql.connector.java>
+        <com.alibaba.druid>1.2.9</com.alibaba.druid>
+        <lombok.version>1.18.4</lombok.version>
+        <org.mybatis.spring.boot>2.0.1</org.mybatis.spring.boot>
+        <mybatis-plus.version>3.1.2</mybatis-plus.version>
+        <mybatis.version>2.1.2</mybatis.version>
+        <springfox-swagger.version>3.0.0</springfox-swagger.version>
+        <swagger-models.version>1.6.0</swagger-models.version>
+        <swagger-annotations.version>1.6.0</swagger-annotations.version>
+        <logstash-logback.version>7.2</logstash-logback.version>
+        <smartwf.version>1.0.2.RELEASE</smartwf.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <knife4j.version>2.0.7</knife4j.version>
+        <oauth2.version>0.3.0</oauth2.version>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-spring-boot-starter</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- 自定义配置提示 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 使用dependencyManagement进行版本管理 
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${org.springframework.cloud}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+             -->
+            <!-- SpringBoot开发工具 热部署  
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-devtools</artifactId>
+                <optional>true</optional>
+                <scope>import</scope>
+            </dependency>
+			-->
+			<!-- 集成 OAuth2 授权服务器依赖 -->
+			<dependency>
+			    <groupId>org.springframework.security</groupId>
+			    <artifactId>spring-security-oauth2-authorization-server</artifactId>
+			    <version>${oauth2.version}</version>
+			</dependency>
+            <dependency>
+				<groupId>com.github.xiaoymin</groupId>
+				<artifactId>knife4j-spring-boot-starter</artifactId>
+				<version>${knife4j.version}</version>
+			</dependency>
+            <!--JWT(Json Web Token)登录支持-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <!-- smartwf-common -->
+	        <dependency>
+	            <groupId>com.smartwf.common</groupId>
+	  			<artifactId>smartwf-common</artifactId>
+	            <version>${smartwf.version}</version>
+	        </dependency>
+	        <!-- security安全模块-->
+	        <dependency>
+	        	<groupId>com.smartwf.security</groupId>
+  				<artifactId>smartwf-security</artifactId>
+	  			<version>${smartwf.version}</version>
+	        </dependency>
+            <!-- hutool 工具类 -->
+	        <dependency>
+			    <groupId>cn.hutool</groupId>
+			    <artifactId>hutool-all</artifactId>
+			    <version>${hutool.version}</version>
+			</dependency>
+			<!-- lombok -->
+			<dependency>
+			   <groupId>org.projectlombok</groupId>
+			   <artifactId>lombok</artifactId>
+			   <version>${lombok.version}</version>
+			   <scope>provided</scope>
+			</dependency>
+            <!--mall中MBG生成模块
+            <dependency>
+                <groupId>com.macro.mall</groupId>
+                <artifactId>mall-mbg</artifactId>
+                <version>${mall-mbg.version}</version>
+            </dependency>
+            -->
+            <!-- mysql -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.java}</version>
+            </dependency>
+            
+            <!--myabtis-->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+			    <artifactId>mybatis-spring-boot-starter</artifactId>
+			    <version>${mybatis.version}</version>
+			</dependency>
+            <!--mybatis-plus 相关依赖-->
+		    <dependency>
+		        <groupId>com.baomidou</groupId>
+		        <artifactId>mybatis-plus-boot-starter</artifactId>
+		        <version>${mybatis-plus.version}</version>
+		    </dependency>
+            <!-- 德鲁伊连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${com.alibaba.druid}</version>
+            </dependency>
+            <!--Swagger-UI API文档生产工具-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+            <!--解决Swagger访问主页时的NumberFormatException问题-->
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${swagger-models.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger-annotations.version}</version>
+            </dependency>
+             <!--集成logstash 实现日志输出json格式化 -->
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+</project>

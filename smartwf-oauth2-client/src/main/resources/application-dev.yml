@@ -1,0 +1,62 @@
+# tomcat
+server:
+  port: 8080
+  tomcat:
+    remote-ip-header: x-forward-for
+    uri-encoding: UTF-8
+    # 最大线程数
+    max-threads: 1000
+    max-http-header-size: 8096
+    # 设置tomcat的basedir
+    basedir: ${user.home}/tomcat/tmps
+    # 最大连接数
+    max-connections: 2000
+  servlet:
+    context-path: /smartwf-auth-client
+    
+# spring
+spring:
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  application:
+    name: /smartwf-auth-client
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss # 如果使用字符串表示，用这行设置格式
+    defaultPropertyInclusion: ALWAYS # 如果传递过来的时间为空则不进行过滤
+    timezone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false # 使用时间戳，使用数值timestamp表示日期
+      # 数据库访问配置
+  
+  security:
+    oauth2:
+      client:
+        registration:
+          articles-client-oidc:
+            provider: spring
+            client-id: articles-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/smartwf-auth-client/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: articles-client-oidc
+          articles-client-authorization-code:
+            provider: spring
+            client-id: articles-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:8080/smartwf-auth-client/authorized"
+            scope: articles.read
+            client-name: articles-client-authorization-code
+        provider:
+          spring:
+            issuer-uri: http://os.com:9000/smartwf-auth-server
+      
+# 日志
+logging:
+  level:
+    root: DEBUG
+  config: classpath:log/logback-spring-dev.xml

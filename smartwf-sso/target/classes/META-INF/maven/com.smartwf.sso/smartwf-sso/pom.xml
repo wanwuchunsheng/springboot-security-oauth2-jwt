@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.smartwf.parent</groupId>
+    <artifactId>smartwf</artifactId>
+    <version>1.0.2.RELEASE</version>
+  </parent>
+  <groupId>com.smartwf.sso</groupId>
+  <artifactId>smartwf-sso</artifactId>
+  <name>smartwf-sso</name>
+  <description>oauth2+jwt授权</description>
+  <dependencies>
+        <!-- smartwf-common
+        <dependency>
+            <groupId>com.smartwf.common</groupId>
+  			<artifactId>smartwf-common</artifactId>
+        </dependency>
+         -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+       	<!-- hutool 工具类 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+		<!-- 集成 OAuth2 授权服务器依赖 -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-oauth2-authorization-server</artifactId>
+		</dependency>
+		<!-- spring security -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+        <!--java版本太高  向下兼容的包-->
+	    <dependency>
+	        <groupId>javax.xml.bind</groupId>
+	        <artifactId>jaxb-api</artifactId>
+	    </dependency>
+    </dependencies>
+</project>

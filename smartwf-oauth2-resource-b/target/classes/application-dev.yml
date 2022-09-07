@@ -1,0 +1,65 @@
+# tomcat
+server:
+  port: 8002
+  tomcat:
+    remote-ip-header: x-forward-for
+    uri-encoding: UTF-8
+    # 最大线程数
+    max-threads: 1000
+    max-http-header-size: 8096
+    # 设置tomcat的basedir
+    basedir: ${user.home}/tomcat/tmps
+    # 最大连接数
+    max-connections: 2000
+  servlet:
+    context-path: /smartwf-resource-b
+    
+# spring
+spring:
+  main:
+    allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+  application:
+    name: /smartwf-resource-b
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss # 如果使用字符串表示，用这行设置格式
+    defaultPropertyInclusion: ALWAYS # 如果传递过来的时间为空则不进行过滤
+    timezone: GMT+8
+    serialization:
+      write-dates-as-timestamps: false # 使用时间戳，使用数值timestamp表示日期
+      # 数据库访问配置
+      
+       
+  #redis config
+  redis:
+    host: 101.201.67.138
+    port: 6379
+    password: wind2@ # 如果未单独配置默认为空即可
+    timeout: 3000
+    database: 7
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+      
+# 自定义 jwt 配置（校验jwt）
+jwt:
+  cert-info:
+    # 公钥证书存放位置
+    public-key-location: myjks.cer
+  claims:
+    # 令牌的鉴发方：即授权服务器的地址
+    issuer: http://os.com:9000/smartwf-auth-server
+    # 令牌有效时间（单位：秒）；设为0时，和令牌实际时间一致。
+    # 如果大于0，就是在原来过期时间的基础再加上这个值
+    #expires-at: 0 
+    
+# 日志
+logging:
+  level:
+    root: DEBUG
+  config: classpath:log/logback-spring-dev.xml

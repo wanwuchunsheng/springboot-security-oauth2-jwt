@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.smartwf.parent</groupId>
+    <artifactId>smartwf</artifactId>
+    <version>1.0.2.RELEASE</version>
+  </parent>
+  <groupId>com.smartwf.resouces</groupId>
+  <artifactId>smartwf-oauth2-resource-a</artifactId>
+  <name>smartwf-oauth2-resource-a</name>
+  <description>资源服务器A</description>
+  <dependencies>
+        <!-- smartwf-common -->
+        <dependency>
+            <groupId>com.smartwf.common</groupId>
+  			<artifactId>smartwf-common</artifactId>
+        </dependency>
+        <!-- 资源服务器 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+		<!-- spring security -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+        <dependency>
+			<groupId>com.github.xiaoymin</groupId>
+			<artifactId>knife4j-spring-boot-starter</artifactId>
+		</dependency>
+	    <!--Swagger-UI API文档生产工具-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+        </dependency>
+        <!--解决Swagger访问主页时的NumberFormatException问题-->
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <!--java版本太高  向下兼容的包-->
+	    <dependency>
+	        <groupId>javax.xml.bind</groupId>
+	        <artifactId>jaxb-api</artifactId>
+	    </dependency>
+    </dependencies>
+</project>

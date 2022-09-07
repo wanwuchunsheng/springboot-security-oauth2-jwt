@@ -1,0 +1,7 @@
+# 默认启用开发环境
+server:
+  port: 3000
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
